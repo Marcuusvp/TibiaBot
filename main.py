@@ -1,81 +1,140 @@
-import pynput
 import pyautogui
 import threading
-import random
+import keyboard
+import constants
+import json
 
-from vida_mana import manager_suplies
+
+from vida_mana import manage_supplies
+from auto_attack_thread import start_monitoring
+from auto_loot_thread import start_autoLoot
 
 pyautogui.useImageNotFoundException(False)
 
-FULL_DEFENSIVE_HOTKEY = '-'
-FULL_OFFENSIVE_HOTKEY = '='
-USE_RING = 'F10'
-list_hotkey_before = [FULL_OFFENSIVE_HOTKEY, USE_RING]
-list_hotkey_after = [FULL_DEFENSIVE_HOTKEY, USE_RING]
-EAT_FOOD_HOTKEY = 'F12'
-LIST_POSITION_LOOT = [(706, 414), (780, 408), (841, 407), (849, 476), (849, 539), (779, 541), (720, 539), (716, 461)]
-LIST_HOTKEY_ATTACKS = [{"hotkey":'F4', "delay": 6}]
-LIST_HOTKEY_ATTACKS_EXEMPLO = [{"hotkey":'F4', "delay": 0.5}, {"hotkey":'F5', "delay": 2}, {"hotkey":'F6', "delay": 2}]
-REGION_BATTLE = (1573, 25, 155, 37)
-
-def rotate_skills():
-    while not event_rotate_skills.is_set():
-        for attack in LIST_HOTKEY_ATTACKS:
-            if event_rotate_skills.is_set():
-                return
-            if pyautogui.locateOnScreen('battle.png', confidence=0.8, region=REGION_BATTLE):
-                continue
-            print('Executando: ', attack['hotkey'])
-            pyautogui.press('space')
-            pyautogui.press(attack["hotkey"])
-            pyautogui.sleep(attack["delay"])
-
-
-def execute_hotkey(hotkey):
-    pyautogui.press(hotkey)
-
-def get_loot():
-    random.shuffle(LIST_POSITION_LOOT)
-    pyautogui.PAUSE = 0.04
-    for position in LIST_POSITION_LOOT:
-        pyautogui.moveTo(position)
-        pyautogui.click(button="right")
-    pyautogui.PAUSE = 0.1
-
-
+list_hotkey_before = [constants.FULL_OFFENSIVE_HOTKEY, constants.USE_RING]
+list_hotkey_after = [constants.FULL_DEFENSIVE_HOTKEY, constants.USE_RING]
 running = False
-def key_code(key):
-    global running
-    if key == pynput.keyboard.Key.delete:
-        print('Bot encerrado!')
-        return False
-    if hasattr(key, 'char') and key.char == 'f':
-        if running == False:
-            running = True
-            global th_rotate_skills, event_rotate_skills, th_suplies, event_suplies
-            event_suplies = threading.Event()
-            th_suplies = threading.Thread(target=manager_suplies, args=(event_suplies, ))
-            event_rotate_skills = threading.Event()
-            th_rotate_skills = threading.Thread(target=rotate_skills)
-            print('Iniciando a rotacção de skills')
-            for hotkey in list_hotkey_before:
-                execute_hotkey(hotkey)
-            th_rotate_skills.start()
-            th_suplies.start()
-        else:
-            running = False
-            event_rotate_skills.set()
-            event_suplies.set()
-            th_rotate_skills.join()
-            th_suplies.join()
-            print('Parando rotação de skills')
-            for hotkey in list_hotkey_after:
-                execute_hotkey(hotkey)
+stop_event = threading.Event()
 
-    if hasattr(key, 'char') and key.char == 'r':
-        print('Coletando loot')
-        get_loot()
-        execute_hotkey(EAT_FOOD_HOTKEY)
-    
-with pynput.keyboard.Listener(on_press=key_code) as listener:
-    listener.join()
+def check_player_position():
+    return pyautogui.locateOnScreen('imgs/point_player.png', confidence=0.8, region=constants.REGION_MAP)
+
+def go_to_flag(path, wait):
+    flag = pyautogui.locateOnScreen(path, confidence=0.8, region=constants.REGION_MAP)
+    if flag:
+        x, y = pyautogui.center(flag)
+        pyautogui.moveTo(x, y, 0.5)
+        pyautogui.click()
+        pyautogui.sleep(wait)
+        return True
+    else:
+        return False
+
+def fallback_action():
+    print("Realizando ação alternativa...")
+    pyautogui.press('w')
+    pyautogui.sleep(1)
+    pyautogui.moveTo(788, 479, 0.5)
+    pyautogui.press('f9')
+    pyautogui.click()
+    pyautogui.sleep(2)
+
+def check_flag_position(path):
+    flag = pyautogui.locateOnScreen(path, confidence=0.8, region=constants.REGION_MAP)
+    if flag:
+        x, y = pyautogui.center(flag)
+        region_center_x = constants.REGION_MAP[0] + constants.REGION_MAP[2] // 2
+        region_center_y = constants.REGION_MAP[1] + constants.REGION_MAP[3] // 2
+        return abs(x - region_center_x) < 2 and abs(y - region_center_y) < 2  # 10 pixels de tolerância
+    return False
+
+def run():
+    global running, event_rotate_skills, th_rotate_skills, event_suplies, th_suplies, event_battle, th_battle, event_loot, th_loot
+    print("Bot iniciou...")
+    with open(f'{constants.FOLDER_NAME}/infos.json', 'r') as file:
+        data = json.loads(file.read())
+
+    # Inicia a thread de monitoramento de vida e mana
+    event_suplies = threading.Event()
+    th_suplies = threading.Thread(target=manage_supplies, args=(event_suplies,))
+    th_suplies.daemon = True
+    th_suplies.start()
+
+    while not stop_event.is_set():
+        for i, item in enumerate(data):
+            if stop_event.is_set():
+                break
+
+            constants.execute_hotkey(constants.EAT_FOOD_HOTKEY)
+
+            success = go_to_flag(item['path'], item['wait'])
+            if not success:
+                if i > 0:
+                    previous_flag = data[i - 1]['path']
+                    print(f"Bandeira não encontrada. Tentando bandeira anterior: {previous_flag}")
+                    success = go_to_flag(previous_flag, item['wait'])
+                if not success and i < len(data) - 1:
+                    next_flag = data[i + 1]['path']
+                    print(f"Bandeira anterior não encontrada. Tentando próxima bandeira: {next_flag}")
+                    success = go_to_flag(next_flag, item['wait'])
+                if not success:
+                    fallback_action()
+
+            print(f"Fui para o endpoint ->: {item['path']}.")
+
+            # Inicia a thread de batalha
+            event_battle, done_battle, th_battle = start_monitoring()
+            print(f"Entrei em modo de porradaria")
+            while not done_battle.is_set() and not stop_event.is_set():
+                pass
+            th_battle.join()
+
+            # Inicia a thread de loot
+            # event_loot, done_loot, th_loot = start_autoLoot(['imgs/dead_troll.png'])
+            # while not done_loot.is_set() and not stop_event.is_set():
+            #     pass
+            # th_loot.join()
+            print(f"buscando loot...")
+
+            if check_player_position():
+                print(f"não cheguei no endpoint que queria, tentando de novo: {item['path']}. Iniciando ataque.")
+                event_battle, done_battle, th_battle = start_monitoring()
+                print(f"Entrei em modo de porradaria DE NOVO")
+                while not done_battle.is_set() and not stop_event.is_set():
+                    pass
+                th_battle.join()
+                # event_loot, done_loot, th_loot = start_autoLoot('imgs/dead_troll.png')
+                # while not done_loot.is_set() and not stop_event.is_set():
+                #     pass
+                # th_loot.join()
+                # print(f"buscando loot de novo...")
+                go_to_flag(item['path'], item['wait'])
+            
+            print('pre checagem if up_hole')
+            print(item['up_hole'])
+            if item['up_hole'] == 1:
+                print('Entrei no up_hole')
+                # while not check_flag_position(item['path']):
+                #     go_to_flag(item['path'], item['wait'])
+                constants.hole_up()
+                pyautogui.sleep(5)
+                # hole_up('imgs/anchor.png')
+            if item['up_ladder'] == 1:
+                # while not check_flag_position(item['path']):
+                #     go_to_flag(item['path'], item['wait'])
+                constants.ladder_up()
+                pyautogui.sleep(5)
+                # ladder_up('imgs/escada_dir.png')
+
+    # Para a thread de monitoramento de vida e mana
+    event_suplies.set()
+    th_suplies.join()
+
+def stop_bot():
+    print("Bot parando...")
+    stop_event.set()
+
+keyboard.add_hotkey('p', stop_bot)
+
+keyboard.wait('h')
+run()

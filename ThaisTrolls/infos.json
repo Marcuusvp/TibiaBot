@@ -1,0 +1,114 @@
+[
+    {
+        "path": "ThaisTrolls/flag_0.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 15
+    },
+    {
+        "path": "ThaisTrolls/flag_1.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "ThaisTrolls/flag_2.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 15
+    },
+    {
+        "path": "ThaisTrolls/flag_3.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 15
+    },
+    {
+        "path": "ThaisTrolls/flag_4.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 15
+    },
+    {
+        "path": "ThaisTrolls/flag_5.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 20
+    },
+    {
+        "path": "ThaisTrolls/flag_6.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 20
+    },
+    {
+        "path": "ThaisTrolls/flag_7.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 20
+    },
+    {
+        "path": "ThaisTrolls/flag_8.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "ThaisTrolls/flag_9.png",
+        "down_hole": 0,
+        "up_hole": 1,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "ThaisTrolls/flag_10.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "ThaisTrolls/flag_11.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "ThaisTrolls/flag_12.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "ThaisTrolls/flag_13.png",
+        "down_hole": 0,
+        "up_hole": 1,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "ThaisTrolls/flag_14.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 1,
+        "wait": 10
+    },
+    {
+        "path": "ThaisTrolls/flag_15.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    }
+]
