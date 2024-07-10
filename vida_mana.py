@@ -6,8 +6,10 @@ import logging
 
 LIFE_REGION = (1766, 304, 92, 5)
 MANA_REGION = (1766, 316, 92, 5)
-LIFE_COLOR = (240, 97, 97)
-MANA_COLOR = (83, 80, 217)
+LIFE_COLOR = (240, 97, 97) #MONITOR
+MANA_COLOR = (83, 80, 217) #MONITOR
+# LIFE_COLOR = (254, 112, 112) #NOTEBOOK
+# MANA_COLOR = (101, 98, 239) #NOTEBOOK
 MANA_FULL = (59, 79, 122)
 #Point(x=1853, y=320)
 WIDTH = 92
@@ -32,9 +34,9 @@ def manage_supplies(stop_event):
         if not pixel_matches_color(MANA_REGION, 20, MANA_COLOR):
             pyautogui.press('F2')
             print(f"potei pq a mana ta baixa 20")
-        if pixel_matches_color(MANA_REGION, 90, MANA_COLOR):
-            pyautogui.press('F3')
-            print(f"Curei pq a mana ta alta 100")
+        # if pixel_matches_color(MANA_REGION, 90, MANA_COLOR):
+        #     pyautogui.press('F3')
+        #     print(f"Curei pq a mana ta alta 90%")
         time.sleep(1)  # Pequena pausa para evitar sobrecarga de CPU
 
 def start_manage_supplies():

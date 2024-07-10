@@ -3,7 +3,7 @@ import threading
 import keyboard
 import constants
 import json
-
+import actions
 
 from vida_mana import manage_supplies
 from auto_attack_thread import start_monitoring
@@ -65,7 +65,7 @@ def run():
             if stop_event.is_set():
                 break
 
-            constants.execute_hotkey(constants.EAT_FOOD_HOTKEY)
+            actions.execute_hotkey(constants.EAT_FOOD_HOTKEY)
 
             success = go_to_flag(item['path'], item['wait'])
             if not success:
@@ -116,13 +116,13 @@ def run():
                 print('Entrei no up_hole')
                 # while not check_flag_position(item['path']):
                 #     go_to_flag(item['path'], item['wait'])
-                constants.hole_up()
+                actions.hole_up()
                 pyautogui.sleep(5)
                 # hole_up('imgs/anchor.png')
             if item['up_ladder'] == 1:
                 # while not check_flag_position(item['path']):
                 #     go_to_flag(item['path'], item['wait'])
-                constants.ladder_up()
+                actions.ladder_up()
                 pyautogui.sleep(5)
                 # ladder_up('imgs/escada_dir.png')
 

@@ -5,6 +5,7 @@ import keyboard
 import constants
 import logging
 import actions
+# import battleReader
 
 # logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 pg.useImageNotFoundException(False)
