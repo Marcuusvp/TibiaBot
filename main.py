@@ -25,13 +25,14 @@ def go_to_flag(path, wait):
         x, y = pyautogui.center(flag)
         pyautogui.moveTo(x, y, 0.5)
         pyautogui.click()
+        pyautogui.moveTo(788, 479)
         pyautogui.sleep(wait)
         return True
     else:
         return False
 
 def fallback_action():
-    print("Realizando ação alternativa...")
+    # print("Realizando ação alternativa...")
     pyautogui.press('w')
     pyautogui.sleep(1)
     pyautogui.moveTo(788, 479, 0.5)
@@ -66,6 +67,13 @@ def run():
                 break
 
             actions.execute_hotkey(constants.EAT_FOOD_HOTKEY)
+            if actions.check_ring():
+                actions.execute_hotkey(constants.USE_RING)
+            
+            if actions.check_auto_chase():
+                actions.execute_hotkey(constants.CHASE_TARGET_HOTKEY)
+            
+            actions.descartar_itens()
 
             success = go_to_flag(item['path'], item['wait'])
             if not success:
@@ -84,7 +92,7 @@ def run():
 
             # Inicia a thread de batalha
             event_battle, done_battle, th_battle = start_monitoring()
-            print(f"Entrei em modo de porradaria")
+            # print(f"Entrei em modo de porradaria")
             while not done_battle.is_set() and not stop_event.is_set():
                 pass
             th_battle.join()
@@ -94,12 +102,13 @@ def run():
             # while not done_loot.is_set() and not stop_event.is_set():
             #     pass
             # th_loot.join()
-            print(f"buscando loot...")
+            # print(f"buscando loot...")
 
             if check_player_position():
-                print(f"não cheguei no endpoint que queria, tentando de novo: {item['path']}. Iniciando ataque.")
+                print(f"não cheguei no endpoint que queria, tentando de novo: {item['path']}.")
+                go_to_flag(item['path'], item['wait'])
                 event_battle, done_battle, th_battle = start_monitoring()
-                print(f"Entrei em modo de porradaria DE NOVO")
+                # print(f"Entrei em modo de porradaria DE NOVO")
                 while not done_battle.is_set() and not stop_event.is_set():
                     pass
                 th_battle.join()
@@ -107,13 +116,12 @@ def run():
                 # while not done_loot.is_set() and not stop_event.is_set():
                 #     pass
                 # th_loot.join()
-                # print(f"buscando loot de novo...")
-                go_to_flag(item['path'], item['wait'])
+                # print(f"buscando loot de novo...")                
             
-            print('pre checagem if up_hole')
-            print(item['up_hole'])
+            # print('pre checagem if up_hole')
+            # print(item['up_hole'])
             if item['up_hole'] == 1:
-                print('Entrei no up_hole')
+                # print('Entrei no up_hole')
                 # while not check_flag_position(item['path']):
                 #     go_to_flag(item['path'], item['wait'])
                 actions.hole_up()

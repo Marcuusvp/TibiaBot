@@ -5,7 +5,8 @@ import keyboard
 import constants
 import logging
 import actions
-# import battleReader
+
+from battleReader import process_battle_regions
 
 # logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 pg.useImageNotFoundException(False)
@@ -31,7 +32,8 @@ def is_region_empty(region):
             # Verifica se a diferença entre os valores RGB é maior que a tolerância
             if abs(r - g) > tolerance or abs(r - b) > tolerance or abs(g - b) > tolerance:
                 return False
-    return True
+                # Trabalhar aqui, qual a ideia. Se a regiao for retornar falsa, vamos manda-la para o leitor e então usar a validação dele
+    return True 
 
 def is_attacking():
     screenshot = pg.screenshot(region=constants.REGIAO_TARGET)
@@ -50,7 +52,6 @@ def is_attacking():
                 break
         if attack_detected:
             break
-    # print(f'entrei em is_attacking e to {"true" if attack_detected else "false"}')
     return attack_detected
 
 def monitor_and_click(stop_event, done_event):
@@ -59,10 +60,13 @@ def monitor_and_click(stop_event, done_event):
     # print('entrei no monitoramento')
     while not stop_event.is_set():
         if is_attacking():
-            # print('batalhando...')
-            time.sleep(1)
+            while is_attacking():                
+                # print('batalhando...')
+                time.sleep(1)
+                continue
+            actions.get_loot()
             continue
-
+        
         regions_with_monsters = []
 
         for region in BATTLE_REGIONS:

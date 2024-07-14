@@ -28,15 +28,15 @@ def manage_supplies(stop_event):
         if not pixel_matches_color(LIFE_REGION, 30, LIFE_COLOR):
             pyautogui.press('F1')
             print(f"potei pq a vida ta baixa 30")
-        if not pixel_matches_color(LIFE_REGION, 80, LIFE_COLOR):
+        if not pixel_matches_color(LIFE_REGION, 60, LIFE_COLOR):
             pyautogui.press('F3')
             print(f"curei pq a vida ta baixa 80")
-        if not pixel_matches_color(MANA_REGION, 20, MANA_COLOR):
+        if not pixel_matches_color(MANA_REGION, 25, MANA_COLOR):
             pyautogui.press('F2')
             print(f"potei pq a mana ta baixa 20")
-        # if pixel_matches_color(MANA_REGION, 90, MANA_COLOR):
-        #     pyautogui.press('F3')
-        #     print(f"Curei pq a mana ta alta 90%")
+        if pixel_matches_color(MANA_REGION, 95, MANA_COLOR):
+            pyautogui.press('F3')
+            print(f"Curei pq a mana ta alta 95%")
         time.sleep(1)  # Pequena pausa para evitar sobrecarga de CPU
 
 def start_manage_supplies():
