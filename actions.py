@@ -3,9 +3,13 @@ import keyboard
 import constants
 import random
 import os
+from pynput.mouse import Button, Controller as MouseController
+from pynput.keyboard import Key, Controller as KeyboardController
 
 pg.useImageNotFoundException(False)
-
+# Inicializando controladores do mouse e teclado
+mouse = MouseController()
+keyboard = KeyboardController()
 # keyboard.wait('h')
 #print(pg.locateOnScreen('imgs/battle2.png', confidence=0.8))
 # print(pg.pixel(x=1582, y=38))
@@ -28,14 +32,32 @@ def kill_monster():
         print('procurando targets')
         
 
+# def get_loot():
+#     random.shuffle(constants.LIST_POSITION_LOOT)
+#     # pg.PAUSE = 0.05
+#     pg.keyDown('alt')
+#     for position in constants.LIST_POSITION_LOOT:
+#         pg.moveTo(position, duration=0.1)
+#         pg.click(button="left")
+#     # pg.PAUSE = 0.03
+#     pg.keyUp('alt')
+#     pg.moveTo(788, 479)
 def get_loot():
     random.shuffle(constants.LIST_POSITION_LOOT)
-    # pg.PAUSE = 0.05
+    
+    # Pressionar a tecla 'alt'
+    keyboard.press(Key.alt)
+    
+    # Clicar em cada posição na lista
     for position in constants.LIST_POSITION_LOOT:
-        pg.moveTo(position)
-        pg.click(button="right")
-    pg.PAUSE = 0.03
-    pg.moveTo(788, 479)
+        mouse.position = position
+        mouse.click(Button.left, 1)
+    
+    # Soltar a tecla 'alt'
+    keyboard.release(Key.alt)
+    
+    # Mover o mouse para a posição final
+    mouse.position = (788, 479)
 
 def execute_hotkey(hotkey):
     pg.press(hotkey)
@@ -51,7 +73,7 @@ def hole_up():
 
 def ladder_up():
     pg.moveTo(788, 479)
-    pg.click(button="right")
+    pg.click(button="left")
 
 def encontrar_imagem_na_regiao(imagem, regiao):
     # Procura pela imagem na região especificada da tela

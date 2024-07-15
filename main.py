@@ -16,8 +16,20 @@ list_hotkey_after = [constants.FULL_DEFENSIVE_HOTKEY, constants.USE_RING]
 running = False
 stop_event = threading.Event()
 
-def check_player_position():
-    return pyautogui.locateOnScreen('imgs/point_player.png', confidence=0.8, region=constants.REGION_MAP)
+# def check_player_position():
+#     return pyautogui.locateOnScreen('imgs/point_player.png', confidence=0.8, region=constants.REGION_MAP)
+def check_player_position(path):
+    # Localiza a imagem na região especificada
+    player_image = pyautogui.locateOnScreen(path, confidence=0.8, region=constants.REGION_MAP)
+    if player_image:
+        # Obtém as coordenadas do centro da imagem localizada
+        x, y = pyautogui.center(player_image)
+        # Calcula as coordenadas do centro da região do mapa
+        region_center_x = constants.REGION_MAP[0] + constants.REGION_MAP[2] // 2
+        region_center_y = constants.REGION_MAP[1] + constants.REGION_MAP[3] // 2
+        # Verifica se a imagem está no centro da região (com tolerância de 2 pixels)
+        return abs(x - region_center_x) < 2 and abs(y - region_center_y) < 2
+    return False
 
 def go_to_flag(path, wait):
     flag = pyautogui.locateOnScreen(path, confidence=0.8, region=constants.REGION_MAP)
@@ -104,7 +116,7 @@ def run():
             # th_loot.join()
             # print(f"buscando loot...")
 
-            if check_player_position():
+            if not check_player_position(item['path']):
                 print(f"não cheguei no endpoint que queria, tentando de novo: {item['path']}.")
                 go_to_flag(item['path'], item['wait'])
                 event_battle, done_battle, th_battle = start_monitoring()
@@ -131,7 +143,12 @@ def run():
                 # while not check_flag_position(item['path']):
                 #     go_to_flag(item['path'], item['wait'])
                 actions.ladder_up()
-                pyautogui.sleep(5)
+                pyautogui.sleep(3)
+                event_battle, done_battle, th_battle = start_monitoring()
+                # print(f"Entrei em modo de porradaria")
+                while not done_battle.is_set() and not stop_event.is_set():
+                    pass
+                th_battle.join()
                 # ladder_up('imgs/escada_dir.png')
 
     # Para a thread de monitoramento de vida e mana

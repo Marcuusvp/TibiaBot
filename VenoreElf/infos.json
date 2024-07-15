@@ -1,0 +1,212 @@
+[
+    {
+        "path": "VenoreElf/flag_0.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_1.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_2.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_3.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_4.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 1,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_5.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_6.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_7.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_8.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_9.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 1,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_10.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_11.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 1,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_12.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_13.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_14.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_15.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_16.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_17.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 1,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_18.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_19.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_20.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_21.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_22.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_23.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_24.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 1,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_25.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 1,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_26.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_27.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_28.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    },
+    {
+        "path": "VenoreElf/flag_29.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "wait": 10
+    }
+]
