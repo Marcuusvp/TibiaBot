@@ -57,7 +57,8 @@ def is_attacking():
 def monitor_and_click(stop_event, done_event):
     current_region = None
     count = 0
-    # print('entrei no monitoramento')
+    inaccessible_regions = []  # Lista para armazenar regiões inacessíveis
+
     while not stop_event.is_set():
         if is_attacking():
             while is_attacking():                
@@ -70,7 +71,7 @@ def monitor_and_click(stop_event, done_event):
         regions_with_monsters = []
 
         for region in BATTLE_REGIONS:
-            if not is_region_empty(region):
+            if region not in inaccessible_regions and not is_region_empty(region):
                 regions_with_monsters.append(region)
 
         if regions_with_monsters:
@@ -89,13 +90,14 @@ def monitor_and_click(stop_event, done_event):
                 count += 1
                 # print(f"Atacando . . . Contador: {count}.")
                 time.sleep(1)
-                if count > 15:
+                if count > 10:
                     # print(f"Atacando por mais de 15 segundos. Considerando monstro fora de alcance. Removendo marcação.")
                     center_x = current_region[0] + current_region[2] // 2
                     center_y = current_region[1] + current_region[3] // 2
                     pg.moveTo(center_x, center_y)
                     pg.click()
                     
+                    inaccessible_regions.append(current_region)  # Adiciona a região à lista de inacessíveis
                     current_region = None
                     count = 0
                     break

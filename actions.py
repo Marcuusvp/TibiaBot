@@ -14,6 +14,7 @@ keyboard = KeyboardController()
 #print(pg.locateOnScreen('imgs/battle2.png', confidence=0.8))
 # print(pg.pixel(x=1582, y=38))
 def check_ring():
+    # print(pg.locateOnScreen('imgs/noRing.png', confidence=0.8, region=constants.RING_AREA))
     return pg.locateOnScreen('imgs/noRing.png', confidence=0.8, region=constants.RING_AREA)
 
 def check_auto_chase():
@@ -30,18 +31,7 @@ def kill_monster():
                 pg.sleep(1)
                 print('Atacando target')     
         print('procurando targets')
-        
 
-# def get_loot():
-#     random.shuffle(constants.LIST_POSITION_LOOT)
-#     # pg.PAUSE = 0.05
-#     pg.keyDown('alt')
-#     for position in constants.LIST_POSITION_LOOT:
-#         pg.moveTo(position, duration=0.1)
-#         pg.click(button="left")
-#     # pg.PAUSE = 0.03
-#     pg.keyUp('alt')
-#     pg.moveTo(788, 479)
 def get_loot():
     random.shuffle(constants.LIST_POSITION_LOOT)
     
@@ -74,6 +64,39 @@ def hole_up():
 def ladder_up():
     pg.moveTo(788, 479)
     pg.click(button="left")
+
+def ladder_up_ne():
+    pg.moveTo(838, 389)
+    pg.click()
+
+def ladder_up_nw():
+    pg.moveTo(710, 405)
+    pg.click()
+
+def down_hole():
+    pg.press('w')    
+
+def zoom_in(times):
+    zoom = pg.locateCenterOnScreen('imgs/zoomIn.png', region=constants.ZOOM_IN_REGION, confidence=0.8)
+    if zoom is not None:
+        for _ in range(times):
+            pg.moveTo(zoom)
+            pg.click()
+            pg.sleep(0.1)# Pequena pausa para garantir que os cliques sejam registrados
+        pg.moveTo(788, 479)
+    else:
+        print("Botão de zoom não encontrado na tela.")
+
+def zoom_out(times):
+    zoom = pg.locateCenterOnScreen('imgs/zoomOut.png', region=constants.ZOOM_OUT_REGION, confidence=0.8)
+    if zoom is not None:
+        for _ in range(times):
+            pg.moveTo(zoom)
+            pg.click()
+            pg.sleep(0.1)# Pequena pausa para garantir que os cliques sejam registrados
+        pg.moveTo(788, 479)
+    else:
+        print("Botão de zoom não encontrado na tela.")
 
 def encontrar_imagem_na_regiao(imagem, regiao):
     # Procura pela imagem na região especificada da tela

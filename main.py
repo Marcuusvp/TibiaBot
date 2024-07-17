@@ -7,7 +7,6 @@ import actions
 
 from vida_mana import manage_supplies
 from auto_attack_thread import start_monitoring
-from auto_loot_thread import start_autoLoot
 
 pyautogui.useImageNotFoundException(False)
 
@@ -16,32 +15,62 @@ list_hotkey_after = [constants.FULL_DEFENSIVE_HOTKEY, constants.USE_RING]
 running = False
 stop_event = threading.Event()
 
-# def check_player_position():
-#     return pyautogui.locateOnScreen('imgs/point_player.png', confidence=0.8, region=constants.REGION_MAP)
 def check_player_position(path):
     # Localiza a imagem na região especificada
     player_image = pyautogui.locateOnScreen(path, confidence=0.8, region=constants.REGION_MAP)
     if player_image:
         # Obtém as coordenadas do centro da imagem localizada
         x, y = pyautogui.center(player_image)
-        # Calcula as coordenadas do centro da região do mapa
         region_center_x = constants.REGION_MAP[0] + constants.REGION_MAP[2] // 2
         region_center_y = constants.REGION_MAP[1] + constants.REGION_MAP[3] // 2
-        # Verifica se a imagem está no centro da região (com tolerância de 2 pixels)
-        return abs(x - region_center_x) < 2 and abs(y - region_center_y) < 2
+        return abs(x - region_center_x) <= 2 and abs(y - region_center_y) <= 2
     return False
 
-def go_to_flag(path, wait):
-    flag = pyautogui.locateOnScreen(path, confidence=0.8, region=constants.REGION_MAP)
+def go_to_flag(item):
+    print(f"próximo endpoint ->: {item['path']}.")
+    flag = pyautogui.locateOnScreen(item['path'], confidence=0.8, region=constants.REGION_MAP)
     if flag:
         x, y = pyautogui.center(flag)
         pyautogui.moveTo(x, y, 0.5)
-        pyautogui.click()
+        pyautogui.click()  
+        print(f"localizei e cliquei no endpoint ->: {item['path']}.")      
         pyautogui.moveTo(788, 479)
-        pyautogui.sleep(wait)
-        return True
-    else:
-        return False
+        pyautogui.sleep(item['wait'])
+        
+        if check_player_position(item['path']):            
+            return True
+    return False
+
+def perform_action(item):
+        pyautogui.sleep(1)
+        """Realiza a ação associada à bandeira."""
+        if item['zoom_in'] > 0:
+            actions.zoom_in(item['zoom_in'])
+            pyautogui.sleep(2)
+            
+        if item['zoom_out'] > 0:
+            actions.zoom_out(item['zoom_out'])
+            pyautogui.sleep(2)
+        
+        if item['up_hole'] > 0:
+            actions.hole_up()
+            pyautogui.sleep(3)
+
+        if item['up_ladder'] > 0:
+            actions.ladder_up()
+            pyautogui.sleep(2)
+
+        if item['up_ladder_ne'] > 0:
+            actions.ladder_up_ne()
+            pyautogui.sleep(2)
+        
+        if item['up_ladder_nw'] > 0:
+            actions.ladder_up_nw()
+            pyautogui.sleep(2)
+        
+        if item['down_hole'] > 0:
+            actions.down_hole()
+            pyautogui.sleep(2)
 
 def fallback_action():
     # print("Realizando ação alternativa...")
@@ -60,6 +89,7 @@ def check_flag_position(path):
         region_center_y = constants.REGION_MAP[1] + constants.REGION_MAP[3] // 2
         return abs(x - region_center_x) < 2 and abs(y - region_center_y) < 2  # 10 pixels de tolerância
     return False
+        
 
 def run():
     global running, event_rotate_skills, th_rotate_skills, event_suplies, th_suplies, event_battle, th_battle, event_loot, th_loot
@@ -80,6 +110,7 @@ def run():
 
             actions.execute_hotkey(constants.EAT_FOOD_HOTKEY)
             if actions.check_ring():
+                # print('entrei no if ring')
                 actions.execute_hotkey(constants.USE_RING)
             
             if actions.check_auto_chase():
@@ -87,69 +118,31 @@ def run():
             
             actions.descartar_itens()
 
-            success = go_to_flag(item['path'], item['wait'])
-            if not success:
-                if i > 0:
-                    previous_flag = data[i - 1]['path']
-                    print(f"Bandeira não encontrada. Tentando bandeira anterior: {previous_flag}")
-                    success = go_to_flag(previous_flag, item['wait'])
-                if not success and i < len(data) - 1:
-                    next_flag = data[i + 1]['path']
-                    print(f"Bandeira anterior não encontrada. Tentando próxima bandeira: {next_flag}")
-                    success = go_to_flag(next_flag, item['wait'])
-                if not success:
-                    fallback_action()
+            go_to_flag(item)
 
-            print(f"Fui para o endpoint ->: {item['path']}.")
+            event_battle, done_battle, th_battle = start_monitoring()
+                # print(f"Entrei em modo de porradaria DE NOVO")
+            while not done_battle.is_set() and not stop_event.is_set():
+                pass
+            th_battle.join()
 
+            while go_to_flag(item) == False:
+                print(f"não cheguei no endpoint que queria, tentando de novo: {item['path']}.")
+                go_to_flag(item)
+
+                event_battle, done_battle, th_battle = start_monitoring()
+                # print(f"Entrei em modo de porradaria DE NOVO")
+                while not done_battle.is_set() and not stop_event.is_set():
+                    pass
+                th_battle.join()
+            
+            perform_action(item)
             # Inicia a thread de batalha
             event_battle, done_battle, th_battle = start_monitoring()
             # print(f"Entrei em modo de porradaria")
             while not done_battle.is_set() and not stop_event.is_set():
                 pass
             th_battle.join()
-
-            # Inicia a thread de loot
-            # event_loot, done_loot, th_loot = start_autoLoot(['imgs/dead_troll.png'])
-            # while not done_loot.is_set() and not stop_event.is_set():
-            #     pass
-            # th_loot.join()
-            # print(f"buscando loot...")
-
-            if not check_player_position(item['path']):
-                print(f"não cheguei no endpoint que queria, tentando de novo: {item['path']}.")
-                go_to_flag(item['path'], item['wait'])
-                event_battle, done_battle, th_battle = start_monitoring()
-                # print(f"Entrei em modo de porradaria DE NOVO")
-                while not done_battle.is_set() and not stop_event.is_set():
-                    pass
-                th_battle.join()
-                # event_loot, done_loot, th_loot = start_autoLoot('imgs/dead_troll.png')
-                # while not done_loot.is_set() and not stop_event.is_set():
-                #     pass
-                # th_loot.join()
-                # print(f"buscando loot de novo...")                
-            
-            # print('pre checagem if up_hole')
-            # print(item['up_hole'])
-            if item['up_hole'] == 1:
-                # print('Entrei no up_hole')
-                # while not check_flag_position(item['path']):
-                #     go_to_flag(item['path'], item['wait'])
-                actions.hole_up()
-                pyautogui.sleep(5)
-                # hole_up('imgs/anchor.png')
-            if item['up_ladder'] == 1:
-                # while not check_flag_position(item['path']):
-                #     go_to_flag(item['path'], item['wait'])
-                actions.ladder_up()
-                pyautogui.sleep(3)
-                event_battle, done_battle, th_battle = start_monitoring()
-                # print(f"Entrei em modo de porradaria")
-                while not done_battle.is_set() and not stop_event.is_set():
-                    pass
-                th_battle.join()
-                # ladder_up('imgs/escada_dir.png')
 
     # Para a thread de monitoramento de vida e mana
     event_suplies.set()

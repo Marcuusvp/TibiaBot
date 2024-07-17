@@ -28,6 +28,10 @@ class Rec:
             "down_hole": 0,
             "up_hole": 0,
             "up_ladder": 0,
+            "up_ladder_ne": 0,
+            "up_ladder_nw": 0,
+            "zoom_in": 0,
+            "zoom_out": 0,
             "wait": 10
         }
         self.coordinates.append(infos)
@@ -44,6 +48,22 @@ class Rec:
         last_coordinates = self.coordinates[-1]
         last_coordinates['up_ladder'] = 1
 
+    def up_ladder_ne(self):
+        last_coordinates = self.coordinates[-1]
+        last_coordinates['up_ladder_ne'] = 1
+
+    def up_ladder_nw(self):
+        last_coordinates = self.coordinates[-1]
+        last_coordinates['up_ladder_nw'] = 1
+
+    def zoom_in(self):
+        last_coordinates = self.coordinates[-1]
+        last_coordinates['zoom_in'] = 1
+    
+    def zoom_out(self):
+        last_coordinates = self.coordinates[-1]
+        last_coordinates['zoom_out'] = 1
+
     def key_code(self, key):
         if key == keyboard.Key.esc:
             with open(f'{constants.FOLDER_NAME}/infos.json', 'w') as file:
@@ -55,6 +75,14 @@ class Rec:
             self.up_ladder()
         if key == keyboard.Key.page_up:
             self.up_hole()
+        if key == '+':
+            self.zoom_in()
+        if key == '-':
+            self.zoom_out()
+        if key == keyboard.Key.end:
+            self.up_ladder_ne()
+        if key == keyboard.Key.delete:
+            self.up_ladder_nw()
 
     def start(self):
         with Listener(on_press=self.key_code) as listener:

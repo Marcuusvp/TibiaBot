@@ -8,5 +8,5 @@ while True:
     # print(pyautogui.pixel(1854, 321))
     # print(pyautogui.position())
     # print(pyautogui.pixel(pyautogui.position().x, pyautogui.position().y))
-    img = pyautogui.screenshot(region=(1753, 27,  105,  110))
+    img = pyautogui.screenshot(region=constants.RING_AREA)
     img.save('xpng.png')
