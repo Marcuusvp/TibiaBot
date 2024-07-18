@@ -1,13 +1,16 @@
 from typing import Literal
+from pynput.keyboard import Key, Controller as KeyboardController
+
+keyboard = KeyboardController()
 # HOTKEYS
-EAT_FOOD_HOTKEY = 'F12'
+EAT_FOOD_HOTKEY = Key.f12
 LIST_HOTKEY_ATTACKS = [{"hotkey":'F4', "delay": 6}]
 LIST_HOTKEY_ATTACKS_EXEMPLO = [{"hotkey":'F4', "delay": 0.5}, {"hotkey":'F5', "delay": 2}, {"hotkey":'F6', "delay": 2}]
 
 FULL_DEFENSIVE_HOTKEY = '-'
 FULL_OFFENSIVE_HOTKEY = '='
 CHASE_TARGET_HOTKEY: Literal['r'] = 'r'
-USE_RING = 'F11'
+USE_RING = Key.f11
 
 # FOLDERS
 DISPOSABLE_ITENS_FOLDER = 'disposable_itens'
