@@ -19,7 +19,8 @@ DISPOSABLE_ITENS_FOLDER = 'disposable_itens'
 # FOLDER_NAME = 'ThaisTrolls'
 # FOLDER_NAME = 'ThaisCyclopsNorth'
 # FOLDER_NAME = 'VenoreElf'
-FOLDER_NAME = 'VenorElfFull'
+# FOLDER_NAME = 'VenorElfFull'
+FOLDER_NAME = 'ForestFurys'
 # FOLDER_NAME = 'RMK'
 #########################
 

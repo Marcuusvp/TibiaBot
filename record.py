@@ -75,14 +75,15 @@ class Rec:
             self.up_ladder()
         if key == keyboard.Key.page_up:
             self.up_hole()
-        if key == '+':
-            self.zoom_in()
-        if key == '-':
-            self.zoom_out()
         if key == keyboard.Key.end:
             self.up_ladder_ne()
         if key == keyboard.Key.delete:
-            self.up_ladder_nw()
+            self.down_hole()
+        if isinstance(key, keyboard.KeyCode):
+            if key.char == '-':
+                self.zoom_out()
+            if key.char == '+':
+                self.zoom_in()
 
     def start(self):
         with Listener(on_press=self.key_code) as listener:
