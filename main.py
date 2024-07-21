@@ -38,6 +38,10 @@ def check_player_position(path):
 def go_to_flag(item):
     print(f"próximo endpoint ->: {item['path']}.")
     flag = pyautogui.locateOnScreen(item['path'], confidence=0.8, region=constants.REGION_MAP)
+
+    if flag is None:
+        return None
+    
     if flag:
         x, y = pyautogui.center(flag)
         mouse.position = (x, y)
@@ -110,36 +114,52 @@ def run():
     th_suplies.daemon = True
     th_suplies.start()
 
-    while not stop_event.is_set():
-        for i, item in enumerate(data):
-            if stop_event.is_set():
+    i = 0
+    while not stop_event.is_set() and i < len(data):
+        item = data[i]
+
+        actions.execute_hotkey(constants.EAT_FOOD_HOTKEY)
+        if actions.check_ring():
+            actions.execute_hotkey(constants.USE_RING)
+        
+        if actions.check_auto_chase():
+            actions.execute_hotkey(constants.CHASE_TARGET_HOTKEY)
+        
+        actions.descartar_itens()
+
+        flag = go_to_flag(item)
+
+        while flag is None and i > 0 and not stop_event.is_set():
+            previous_flag = data[i - 1]
+            print(f"não encontrei a flag: {item['path']}, voltando para a anterior: {previous_flag['path']}")
+            flag = go_to_flag(previous_flag)
+            if flag is not None:
+                item = previous_flag
+                i -= 1
                 break
+            else:
+                i -= 1
 
-            actions.execute_hotkey(constants.EAT_FOOD_HOTKEY)
-            if actions.check_ring():
-                actions.execute_hotkey(constants.USE_RING)
-            
-            if actions.check_auto_chase():
-                actions.execute_hotkey(constants.CHASE_TARGET_HOTKEY)
-            
-            actions.descartar_itens()
+        while flag == False and not stop_event.is_set():
+            print(f"não cheguei no endpoint que queria, tentando de novo: {item['path']}.")
+            flag = go_to_flag(item)
 
-            go_to_flag(item)
-
-            while not go_to_flag(item) and not stop_event.is_set():
-                print(f"não cheguei no endpoint que queria, tentando de novo: {item['path']}.")
-                go_to_flag(item)
-
-                event_battle, done_battle, th_battle = start_monitoring()
-                while not done_battle.is_set() and not stop_event.is_set():
-                    pass
-                th_battle.join()
-            
-            perform_action(item)
             event_battle, done_battle, th_battle = start_monitoring()
             while not done_battle.is_set() and not stop_event.is_set():
                 pass
             th_battle.join()
+        
+        perform_action(item)
+        if actions.check_auto_chase():
+            actions.execute_hotkey(constants.CHASE_TARGET_HOTKEY)
+        event_battle, done_battle, th_battle = start_monitoring()
+        while not done_battle.is_set() and not stop_event.is_set():
+            pass
+        th_battle.join()
+
+        i += 1
+        if i >= len(data):
+            i = 0  # Reset to the first flag
 
     # Para a thread de monitoramento de vida e mana
     event_suplies.set()
@@ -168,7 +188,7 @@ signal.signal(signal.SIGINT, signal_handler)
 
 hotkeys = {
     'p': stop_bot,
-    'h': start_bot
+    '<ctrl>+h': start_bot
 }
 
 with GlobalHotKeys(hotkeys) as h:
