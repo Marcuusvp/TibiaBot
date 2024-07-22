@@ -6,7 +6,6 @@ import constants
 import logging
 import actions
 
-from battleReader import process_battle_regions
 
 # logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 pg.useImageNotFoundException(False)
@@ -21,7 +20,7 @@ BATTLE_REGIONS = [
     (1574, 147, 151, 19)
 ]
 
-def is_region_empty(region):
+def is_region_empty(region, result, index):
     screenshot = pg.screenshot(region=region)
     width, height = screenshot.size
     tolerance = 40  # Tolerância para a diferença entre valores RGB
@@ -31,15 +30,15 @@ def is_region_empty(region):
             r, g, b = screenshot.getpixel((x, y))
             # Verifica se a diferença entre os valores RGB é maior que a tolerância
             if abs(r - g) > tolerance or abs(r - b) > tolerance or abs(g - b) > tolerance:
-                return False
-                # Trabalhar aqui, qual a ideia. Se a regiao for retornar falsa, vamos manda-la para o leitor e então usar a validação dele
-    return True 
+                print(f'Encontrei monstro na região: {region}')
+                result[index] = actions.ignorar_monstro(region)
+                return
+    result[index] = True
 
 def is_attacking():
     screenshot = pg.screenshot(region=constants.REGIAO_TARGET)
     width, height = screenshot.size
     tolerance = 20  # Tolerância para a cor de ataque vermelho
-    # print('entrei em is_attacking')
     attack_detected = False
     for x in range(width):
         for y in range(height):
@@ -47,7 +46,6 @@ def is_attacking():
             if abs(r - constants.RGB_ATTACK[0]) <= tolerance and \
                g == constants.RGB_ATTACK[1] and \
                b == constants.RGB_ATTACK[2]:
-                # print('entrei em is_attacking e to true')
                 attack_detected = True
                 break
         if attack_detected:
@@ -62,23 +60,31 @@ def monitor_and_click(stop_event, done_event):
     while not stop_event.is_set():
         if is_attacking():
             while is_attacking():                
-                # print('batalhando...')
                 time.sleep(1)
                 continue
             actions.get_loot()
             continue
         
         regions_with_monsters = []
+        threads = []
+        results = [None] * len(BATTLE_REGIONS)
 
-        for region in BATTLE_REGIONS:
-            if region not in inaccessible_regions and not is_region_empty(region):
+        for index, region in enumerate(BATTLE_REGIONS):
+            if region not in inaccessible_regions:
+                thread = threading.Thread(target=is_region_empty, args=(region, results, index))
+                threads.append(thread)
+                thread.start()
+        
+        for thread in threads:
+            thread.join()
+        
+        for index, region in enumerate(BATTLE_REGIONS):
+            if not results[index]:
                 regions_with_monsters.append(region)
 
         if regions_with_monsters:
             # Clica na última região onde há um monstro
-            # last_region = regions_with_monsters[-1]
             current_region = regions_with_monsters[0]
-            # print(f"Encontrado monstro na região: {current_region}. Iniciando ataque.")
             center_x = current_region[0] + current_region[2] // 2
             center_y = current_region[1] + current_region[3] // 2
             pg.moveTo(center_x, center_y)
@@ -88,15 +94,13 @@ def monitor_and_click(stop_event, done_event):
             # Verifica se estamos atacando e aguarda até que não estejamos mais
             while is_attacking():
                 count += 1
-                # print(f"Atacando . . . Contador: {count}.")
                 time.sleep(1)
-                if count > 10:
-                    # print(f"Atacando por mais de 15 segundos. Considerando monstro fora de alcance. Removendo marcação.")
+                if count > 10:  # Lançar uma const aqui
                     center_x = current_region[0] + current_region[2] // 2
                     center_y = current_region[1] + current_region[3] // 2
                     pg.moveTo(center_x, center_y)
                     pg.click()
-                    
+                    print(f'parei de atacar monstro inalcançavel na regiao: {current_region}')
                     inaccessible_regions.append(current_region)  # Adiciona a região à lista de inacessíveis
                     current_region = None
                     count = 0
@@ -107,10 +111,9 @@ def monitor_and_click(stop_event, done_event):
         else:
             current_region = None
 
-        if current_region is None:
+        if len(regions_with_monsters) < 1:
             print('Não há mais monstros. Encerrando a thread...')
             break
-        # time.sleep(1)
     done_event.set()
 
 

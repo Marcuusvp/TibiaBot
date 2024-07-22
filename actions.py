@@ -2,6 +2,7 @@ import pyautogui as pg
 import os
 import random
 import constants
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pynput.mouse import Button, Controller as MouseController
 from pynput.keyboard import Key, Controller as KeyboardController
 
@@ -19,6 +20,24 @@ def check_auto_chase():
 
 def check_battle():
     return pg.locateOnScreen('imgs/battle.png', confidence=0.8, region=constants.REGION_BATTLE)
+
+def check_image(filename, region):
+    if filename.endswith('.png'):
+        if pg.locateOnScreen(f'ignored_Monsters/{filename}', confidence=0.8, region=region):
+            return True
+    return False
+
+def ignorar_monstro(region):
+    with ThreadPoolExecutor() as executor:
+        futures = []
+        for filename in os.listdir('ignored_Monsters'):
+            futures.append(executor.submit(check_image, filename, region))
+        
+        for future in as_completed(futures):
+            if future.result():
+                return True
+    
+    return False
 
 def get_loot():
     random.shuffle(constants.LIST_POSITION_LOOT)
