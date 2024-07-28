@@ -30,7 +30,6 @@ def is_region_empty(region, result, index):
             r, g, b = screenshot.getpixel((x, y))
             # Verifica se a diferença entre os valores RGB é maior que a tolerância
             if abs(r - g) > tolerance or abs(r - b) > tolerance or abs(g - b) > tolerance:
-                print(f'Encontrei monstro na região: {region}')
                 result[index] = actions.ignorar_monstro(region)
                 return
     result[index] = True
@@ -79,11 +78,14 @@ def monitor_and_click(stop_event, done_event):
             thread.join()
         
         for index, region in enumerate(BATTLE_REGIONS):
-            if not results[index]:
+            if not results[index] and region not in inaccessible_regions:
                 regions_with_monsters.append(region)
+        
+        # print(f'regioes com monstros: {len(regions_with_monsters)}')
 
         if regions_with_monsters:
             # Clica na última região onde há um monstro
+            # print(f'Regioes com monstros: {regions_with_monsters}')
             current_region = regions_with_monsters[0]
             center_x = current_region[0] + current_region[2] // 2
             center_y = current_region[1] + current_region[3] // 2
@@ -95,6 +97,7 @@ def monitor_and_click(stop_event, done_event):
             while is_attacking():
                 count += 1
                 time.sleep(1)
+                # print(f'Count: {count}, Current Region: {current_region}')
                 if count > 10:  # Lançar uma const aqui
                     center_x = current_region[0] + current_region[2] // 2
                     center_y = current_region[1] + current_region[3] // 2
@@ -110,6 +113,8 @@ def monitor_and_click(stop_event, done_event):
 
         else:
             current_region = None
+
+        # print(f'Regiões inacessíveis: {inaccessible_regions}')
 
         if len(regions_with_monsters) < 1:
             print('Não há mais monstros. Encerrando a thread...')
