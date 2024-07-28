@@ -60,7 +60,7 @@ def hole_up():
     print('Movi o mouse pro centro')
     pg.sleep(2)
 
-    execute_hotkey('F10')
+    execute_hotkey(Key.f10)
     mouse.click(Button.left, 1)
     print('Apertei F10')
 

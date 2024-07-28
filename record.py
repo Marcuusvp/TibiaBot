@@ -71,13 +71,15 @@ class Rec:
             return False
         if key == keyboard.Key.insert:
             self.photo()
-        if key == keyboard.Key.page_down:
-            self.up_ladder()
         if key == keyboard.Key.page_up:
+            self.up_ladder()
+        if key == keyboard.Key.media_next:
             self.up_hole()
+        if key == keyboard.Key.delete:
+            self.up_ladder_nw()
         if key == keyboard.Key.end:
             self.up_ladder_ne()
-        if key == keyboard.Key.delete:
+        if key == keyboard.Key.page_down:
             self.down_hole()
         if isinstance(key, keyboard.KeyCode):
             if key.char == '-':

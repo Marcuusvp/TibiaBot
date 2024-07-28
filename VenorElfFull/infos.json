@@ -8,7 +8,7 @@
         "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
     },
     {
         "path": "VenorElfFull/flag_1.png",
@@ -19,21 +19,10 @@
         "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
     },
     {
         "path": "VenorElfFull/flag_2.png",
-        "down_hole": 0,
-        "up_hole": 0,
-        "up_ladder": 0,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_3.png",
         "down_hole": 0,
         "up_hole": 0,
         "up_ladder": 1,
@@ -41,7 +30,18 @@
         "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
+    },
+    {
+        "path": "VenorElfFull/flag_3.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
     },
     {
         "path": "VenorElfFull/flag_4.png",
@@ -52,98 +52,10 @@
         "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
     },
     {
         "path": "VenorElfFull/flag_5.png",
-        "down_hole": 0,
-        "up_hole": 0,
-        "up_ladder": 0,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_6.png",
-        "down_hole": 0,
-        "up_hole": 0,
-        "up_ladder": 0,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_7.png",
-        "down_hole": 0,
-        "up_hole": 0,
-        "up_ladder": 0,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_8.png",
-        "down_hole": 0,
-        "up_hole": 0,
-        "up_ladder": 1,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_9.png",
-        "down_hole": 0,
-        "up_hole": 0,
-        "up_ladder": 1,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_10.png",
-        "down_hole": 1,
-        "up_hole": 0,
-        "up_ladder": 0,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_11.png",
-        "down_hole": 1,
-        "up_hole": 0,
-        "up_ladder": 0,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_12.png",
-        "down_hole": 1,
-        "up_hole": 0,
-        "up_ladder": 0,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_13.png",
         "down_hole": 0,
         "up_hole": 0,
         "up_ladder": 1,
@@ -151,51 +63,139 @@
         "up_ladder_nw": 0,
         "zoom_in": 1,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
+    },
+    {
+        "path": "VenorElfFull/flag_6.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 1,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "VenorElfFull/flag_7.png",
+        "down_hole": 1,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "VenorElfFull/flag_8.png",
+        "down_hole": 1,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 1,
+        "wait": 4
+    },
+    {
+        "path": "VenorElfFull/flag_9.png",
+        "down_hole": 1,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "VenorElfFull/flag_10.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 1,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 1,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "VenorElfFull/flag_11.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 1,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "VenorElfFull/flag_12.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 1,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "VenorElfFull/flag_13.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 1,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
     },
     {
         "path": "VenorElfFull/flag_14.png",
         "down_hole": 0,
         "up_hole": 0,
         "up_ladder": 0,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 1,
+        "up_ladder_ne": 1,
+        "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
     },
     {
         "path": "VenorElfFull/flag_15.png",
-        "down_hole": 0,
+        "down_hole": 1,
         "up_hole": 0,
         "up_ladder": 0,
         "up_ladder_ne": 0,
-        "up_ladder_nw": 1,
+        "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
     },
     {
         "path": "VenorElfFull/flag_16.png",
-        "down_hole": 0,
+        "down_hole": 1,
         "up_hole": 0,
         "up_ladder": 0,
-        "up_ladder_ne": 1,
+        "up_ladder_ne": 0,
         "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
     },
     {
         "path": "VenorElfFull/flag_17.png",
-        "down_hole": 0,
+        "down_hole": 1,
         "up_hole": 0,
         "up_ladder": 0,
-        "up_ladder_ne": 1,
+        "up_ladder_ne": 0,
         "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
     },
     {
         "path": "VenorElfFull/flag_18.png",
@@ -206,7 +206,7 @@
         "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
     },
     {
         "path": "VenorElfFull/flag_19.png",
@@ -216,55 +216,11 @@
         "up_ladder_ne": 0,
         "up_ladder_nw": 0,
         "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
+        "zoom_out": 1,
+        "wait": 4
     },
     {
         "path": "VenorElfFull/flag_20.png",
-        "down_hole": 1,
-        "up_hole": 0,
-        "up_ladder": 0,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_21.png",
-        "down_hole": 1,
-        "up_hole": 0,
-        "up_ladder": 0,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_22.png",
-        "down_hole": 1,
-        "up_hole": 0,
-        "up_ladder": 0,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_23.png",
-        "down_hole": 0,
-        "up_hole": 0,
-        "up_ladder": 0,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 1,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_24.png",
         "down_hole": 0,
         "up_hole": 0,
         "up_ladder": 1,
@@ -272,10 +228,10 @@
         "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
     },
     {
-        "path": "VenorElfFull/flag_25.png",
+        "path": "VenorElfFull/flag_21.png",
         "down_hole": 0,
         "up_hole": 0,
         "up_ladder": 0,
@@ -283,7 +239,51 @@
         "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
+    },
+    {
+        "path": "VenorElfFull/flag_22.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "VenorElfFull/flag_23.png",
+        "down_hole": 1,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "VenorElfFull/flag_24.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "VenorElfFull/flag_25.png",
+        "down_hole": 1,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
     },
     {
         "path": "VenorElfFull/flag_26.png",
@@ -294,7 +294,7 @@
         "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
     },
     {
         "path": "VenorElfFull/flag_27.png",
@@ -305,21 +305,10 @@
         "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
     },
     {
         "path": "VenorElfFull/flag_28.png",
-        "down_hole": 1,
-        "up_hole": 0,
-        "up_ladder": 0,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_29.png",
         "down_hole": 0,
         "up_hole": 0,
         "up_ladder": 0,
@@ -327,18 +316,29 @@
         "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
     },
     {
-        "path": "VenorElfFull/flag_30.png",
-        "down_hole": 1,
+        "path": "VenorElfFull/flag_29.png",
+        "down_hole": 0,
         "up_hole": 0,
-        "up_ladder": 0,
+        "up_ladder": 1,
         "up_ladder_ne": 0,
         "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
+    },
+    {
+        "path": "VenorElfFull/flag_30.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 1,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
     },
     {
         "path": "VenorElfFull/flag_31.png",
@@ -349,65 +349,10 @@
         "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
     },
     {
         "path": "VenorElfFull/flag_32.png",
-        "down_hole": 0,
-        "up_hole": 0,
-        "up_ladder": 1,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_33.png",
-        "down_hole": 0,
-        "up_hole": 0,
-        "up_ladder": 1,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_34.png",
-        "down_hole": 0,
-        "up_hole": 0,
-        "up_ladder": 0,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_35.png",
-        "down_hole": 0,
-        "up_hole": 0,
-        "up_ladder": 0,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_36.png",
-        "down_hole": 0,
-        "up_hole": 0,
-        "up_ladder": 0,
-        "up_ladder_ne": 0,
-        "up_ladder_nw": 0,
-        "zoom_in": 0,
-        "zoom_out": 0,
-        "wait": 3
-    },
-    {
-        "path": "VenorElfFull/flag_37.png",
         "down_hole": 1,
         "up_hole": 0,
         "up_ladder": 0,
@@ -415,6 +360,6 @@
         "up_ladder_nw": 0,
         "zoom_in": 0,
         "zoom_out": 0,
-        "wait": 3
+        "wait": 4
     }
 ]

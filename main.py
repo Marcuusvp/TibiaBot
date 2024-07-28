@@ -137,17 +137,19 @@ def run():
                 item = previous_flag
                 i -= 1
                 break
-            else:
-                i -= 1
+            # else:
+            #     i -= 1
 
         while flag == False and not stop_event.is_set():
             print(f"não cheguei no endpoint que queria, tentando de novo: {item['path']}.")
-            flag = go_to_flag(item)
 
             event_battle, done_battle, th_battle = start_monitoring()
             while not done_battle.is_set() and not stop_event.is_set():
                 pass
             th_battle.join()
+            
+            flag = go_to_flag(item)
+
         
         perform_action(item)
         if actions.check_auto_chase():
