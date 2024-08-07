@@ -101,6 +101,29 @@ def check_flag_position(path):
         return abs(x - region_center_x) < 2 and abs(y - region_center_y) < 2
     return False
 
+def leave_hunt():
+    with open(f'{constants.FOLDER_LEAVE_HUNT}/infos.json', 'r') as file:
+        data = json.loads(file.read())
+    
+    i = 0
+    while i < len(data):
+        item = data[i]
+        flag = go_to_flag(item)
+
+        while flag == False and not stop_event.is_set():
+            print(f"não cheguei no endpoint que queria, tentando de novo: {item['path']}.")
+
+            event_battle, done_battle, th_battle = start_monitoring()
+            while not done_battle.is_set() and not stop_event.is_set():
+                pass
+            th_battle.join()
+            
+            flag = go_to_flag(item)
+        
+        i += 1
+    
+    pyautogui.sleep(1200)
+
 def run():
     global running, event_rotate_skills, th_rotate_skills, event_suplies, th_suplies, event_battle, th_battle, event_loot, th_loot, bot_running
     bot_running = True
@@ -132,6 +155,12 @@ def run():
         while flag is None and i > 0 and not stop_event.is_set():
             previous_flag = data[i - 1]
             print(f"não encontrei a flag: {item['path']}, voltando para a anterior: {previous_flag['path']}")
+            
+            event_battle, done_battle, th_battle = start_monitoring()
+            while not done_battle.is_set() and not stop_event.is_set():
+                pass
+            th_battle.join()
+
             flag = go_to_flag(previous_flag)
             if flag is not None:
                 item = previous_flag

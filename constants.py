@@ -14,13 +14,15 @@ USE_RING = Key.f11
 
 # FOLDERS
 DISPOSABLE_ITENS_FOLDER = 'disposable_itens'
+FOLDER_LEAVE_HUNT = ''
 
 # HUNTING FOLDERS SCRIPTS
 # FOLDER_NAME = 'ThaisTrolls'
 # FOLDER_NAME = 'ThaisCyclopsNorth'
 # FOLDER_NAME = 'VenoreElf'
-# FOLDER_NAME = 'VenorElfFull'
-FOLDER_NAME = 'ForestFurys'
+FOLDER_NAME = 'VenorElfFull'
+# FOLDER_NAME = 'SwampTrolls'
+# FOLDER_NAME = 'ForestFurys'
 # FOLDER_NAME = 'RMK'
 #########################
 

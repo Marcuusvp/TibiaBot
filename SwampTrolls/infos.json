@@ -1,0 +1,156 @@
+[
+    {
+        "path": "SwampTrolls/flag_0.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "SwampTrolls/flag_1.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "SwampTrolls/flag_1a.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "SwampTrolls/flag_2.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "SwampTrolls/flag_3.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "SwampTrolls/flag_4.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "SwampTrolls/flag_5.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "SwampTrolls/flag_6.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "SwampTrolls/flag_7.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "SwampTrolls/flag_8.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "SwampTrolls/flag_9.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "SwampTrolls/flag_10.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "SwampTrolls/flag_11.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    },
+    {
+        "path": "SwampTrolls/flag_12.png",
+        "down_hole": 0,
+        "up_hole": 0,
+        "up_ladder": 0,
+        "up_ladder_ne": 0,
+        "up_ladder_nw": 0,
+        "zoom_in": 0,
+        "zoom_out": 0,
+        "wait": 4
+    }
+]
